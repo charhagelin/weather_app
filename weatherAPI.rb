@@ -12,7 +12,7 @@ require './current_temp'
 #     attr_accessor :locationInput, :locationOutput
 # end
 
-@currentlyIn = nil
+@currentLocation = nil
 
 @cities = { "Sydney" => [-33.8688,151.2093],
   "Melbourne" => [-37.8136,144.9631],
@@ -54,7 +54,12 @@ end
 
 def directionsToCity(input)
   city = @cities.keys[input]
-  route = @gmaps.directions(@currentlyIn,city,alternatives: false)
+  # currentlyIn = currentlyIn
+  @gmaps = get_map_api
+  puts "IN:#{@currentLocation}"
+  puts "TO:#{city}"
+  # exit
+  route = @gmaps.directions(@currentLocation,city,alternatives: false)
   hash = route[0]
   status = route[1]
 
@@ -83,6 +88,7 @@ def askUserToTravel()
     end
     puts "type the number of the city you would like directions to"
     input = gets.chomp.to_i
+    # input = input + 1
     length = @cities.length.to_i
       if input.between?(1,length)
         directionsToCity(input)
@@ -117,16 +123,19 @@ def listCities()
 end
 
 #####MAIN PROGRAM########
+# currentLocation = CurrentLocation.new
 user_input = CurrentLocation.new.askLocation()
 puts "User Input Returned:#{user_input}"
 
 formatted_address = CurrentLocation.new.getFormattedAddress(user_input)
+@currentLocation = formatted_address[1][0][:formatted_address]
 
   if formatted_address[0] == false
     puts "Address not within Australia. Please try again.
     "
     user_input = CurrentLocation.new.askLocation()
   else
+    puts "IN 2: #{@currentLocation}"
     temp = CurrentTemp.new.getCurrentTemp(formatted_address[1])
   end
 

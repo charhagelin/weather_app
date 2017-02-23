@@ -5,9 +5,9 @@ class CurrentTemp
   end
 
   def getCurrentTemp(hash)
-    puts '&' * 40
-    puts "hash: #{hash}"
-    puts '&' * 40
+    # puts '&' * 40
+    # puts "hash: #{hash}"
+    # puts '&' * 40
     lat_long = extractLatLong(hash)
     puts "Getting Forecast ..."
     forecast = ForecastIO.forecast(lat_long[0],lat_long[1])
@@ -15,9 +15,9 @@ class CurrentTemp
     celtemp = (5*(Float(temp) - 32))/9 #return temp in C
     puts "Calculating Current Temp ..."
     result = '%.2f' % celtemp
-    puts '&' * 40
-    puts "result: #{result}"
-    puts '&' * 40
+    # puts '&' * 40
+    # puts "result: #{result}"
+    # puts '&' * 40
     result
   end
 

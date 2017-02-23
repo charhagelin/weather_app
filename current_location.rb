@@ -5,7 +5,7 @@ require './config.rb'
 
 class CurrentLocation
   def initialize() #input lat and long, output current temp
-    # @userInput = userInput
+    @currentlyIn = currentlyIn
     # @formattedAddress = formattedAddress
   end
 
@@ -33,7 +33,8 @@ class CurrentLocation
     @gmaps = get_map_api
     hash = @gmaps.geocode(locationInput)
     puts "found #{hash[0][:formatted_address]}"
-    @currentlyIn = hash[0][:formatted_address]
+    self.currentlyIn = hash[0][:formatted_address]
+    puts "IN:#{self.currentlyIn}"
 
     if is_within_australia_check(hash)
       return [true, hash]
@@ -42,5 +43,5 @@ class CurrentLocation
     end
   end
 
-  attr_accessor :userInput
+  attr_accessor :currentlyIn
 end
