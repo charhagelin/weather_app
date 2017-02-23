@@ -1,4 +1,5 @@
 require 'google_maps_service'
+require 'forecast_io'
 
 ForecastIO.api_key = '200241aa2eca57d1b162699565137181'
 # Setup API keys

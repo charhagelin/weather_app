@@ -13,23 +13,26 @@ require './current_temp'
 #   #   assert_not_nil(actual) #testing that it actually contains something
 #   # end
 # end
-class CurrentTempTest < Test::Unit::TestCase
-  def test_get_current_temp
-    new_obj = CurrentLocation.new
-
-    test_input = "sydney"
-
-    test_result = [{:address_components=>[{:long_name=>"Sydney", :short_name=>"Sydney", :types=>["colloquial_area", "locality", "political"]}, {:long_name=>"New South Wales", :short_name=>"NSW", :types=>["administrative_area_level_1", "political"]}, {:long_name=>"Australia", :short_name=>"AU", :types=>["country", "political"]}], :formatted_address=>"Sydney NSW, Australia", :geometry=>{:bounds=>{:northeast=>{:lat=>-33.5781409, :lng=>151.3430209}, :southwest=>{:lat=>-34.118347, :lng=>150.5209286}}, :location=>{:lat=>-33.8688197, :lng=>151.2092955}, :location_type=>"APPROXIMATE", :viewport=>{:northeast=>{:lat=>-33.5782519, :lng=>151.3429976}, :southwest=>{:lat=>-34.118328, :lng=>150.5209286}}}, :place_id=>"ChIJP3Sa8ziYEmsRUKgyFmh9AQM", :types=>["colloquial_area", "locality", "political"]}]
-
-    method = new_obj.getCurrentTemp(test_hash)
-    assert_equal method.class, Decimal
-  end
-end
+# class CurrentTempTest < Test::Unit::TestCase
+#
+# end
 
 class CurrentLocationTest < Test::Unit::TestCase
   def test_current_location_class_initializes
     new_object = CurrentLocation.new
     assert_equal new_object.class, CurrentLocation
+  end
+
+  def test_get_current_location
+    new_obj = CurrentLocation.new
+
+    test_input = "sydney"
+    test_array = [{:address_components=>[{:long_name=>"Sydney", :short_name=>"Sydney", :types=>["colloquial_area", "locality", "political"]}, {:long_name=>"New South Wales", :short_name=>"NSW", :types=>["administrative_area_level_1", "political"]}, {:long_name=>"Australia", :short_name=>"AU", :types=>["country", "political"]}], :formatted_address=>"Sydney NSW, Australia", :geometry=>{:bounds=>{:northeast=>{:lat=>-33.5781409, :lng=>151.3430209}, :southwest=>{:lat=>-34.118347, :lng=>150.5209286}}, :location=>{:lat=>-33.8688197, :lng=>151.2092955}, :location_type=>"APPROXIMATE", :viewport=>{:northeast=>{:lat=>-33.5782519, :lng=>151.3429976}, :southwest=>{:lat=>-34.118328, :lng=>150.5209286}}}, :place_id=>"ChIJP3Sa8ziYEmsRUKgyFmh9AQM", :types=>["colloquial_area", "locality", "political"]}]
+
+    test_result = [true, test_array]
+    method = new_obj.getFormattedAddress(test_input)
+
+    assert_equal method, test_result
   end
   # def test_get_current_temp
   #   new_current_temp = CurrentTemp.new

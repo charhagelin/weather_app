@@ -1,6 +1,3 @@
-
-require 'forecast_io'
-
 require 'terminal-table'
 require './config.rb'
 require './current_location'
@@ -40,18 +37,7 @@ end
 
 
 
-def is_within_australia_check(hash)
-  puts "Checking address is within Australia ..."
-  puts "Country Short Name: #{hash[0][:address_components][2][:short_name]}"
 
-  if hash[0][:address_components][2][:short_name] == "AU"
-    puts "IN AUS"
-    return true
-  else
-    puts "NOT IN AUS"
-    return false
-  end
-end
 
 def askUserToSeeMoreCitites
   puts "Would you like to see the current temp for all major cities y/n?"
