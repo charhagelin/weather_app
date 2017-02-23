@@ -6,7 +6,6 @@ We decided to create an app that would return the current weather anywhere in Au
 
 through this process we used Trello to hold our user stories as well as a program flow.  
 
-###input pic of trello###
 
 we wanted to create an app that could:
 * return current weather for the location input by the user
