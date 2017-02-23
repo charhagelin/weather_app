@@ -1,6 +1,6 @@
 require 'google_maps_service'
 require './config.rb'
-@gmaps = GoogleMapsService::Client.new(key: 'AIzaSyDtMxX6mnJqcKsqyrHqTXPMCcOMTfmXqAU')
+# @gmaps = GoogleMapsService::Client.new(key: 'AIzaSyDtMxX6mnJqcKsqyrHqTXPMCcOMTfmXqAU')
 
 
 class CurrentLocation
@@ -17,6 +17,7 @@ class CurrentLocation
   def getFormattedAddress(locationInput) #input address or place, output location hash
     puts locationInput
     puts "Validating inputted address ..."
+    @gmaps = get_map_api
     hash = @gmaps.geocode(locationInput)
     puts "found #{hash[0][:formatted_address]}"
     @currentlyIn = hash[0][:formatted_address]
