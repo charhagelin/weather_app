@@ -16,6 +16,6 @@ $ gem install terminal-table
 
 ##### Ruby gem for Google Maps APIs
 ```sh
-gem install google_maps_service
+$ gem install google_maps_service
 ```
 API keys are freely available with a Google Account at https://developers.google.com/console.
