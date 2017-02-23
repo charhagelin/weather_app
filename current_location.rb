@@ -1,4 +1,4 @@
-require 'google_maps_service'
+# require 'google_maps_service'
 require './config.rb'
 # @gmaps = GoogleMapsService::Client.new(key: 'AIzaSyDtMxX6mnJqcKsqyrHqTXPMCcOMTfmXqAU')
 
@@ -12,6 +12,19 @@ class CurrentLocation
   def askLocation()
     puts "Hi, please enter your current location within Australia"
     userInput = gets.chomp
+  end
+
+  def is_within_australia_check(hash)
+    puts "Checking address is within Australia ..."
+    puts "Country Short Name: #{hash[0][:address_components][2][:short_name]}"
+
+    if hash[0][:address_components][2][:short_name] == "AU"
+      puts "IN AUS"
+      return true
+    else
+      puts "NOT IN AUS"
+      return false
+    end
   end
 
   def getFormattedAddress(locationInput) #input address or place, output location hash
