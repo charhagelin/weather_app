@@ -35,7 +35,7 @@ Enter in to terminal:
 
 follow instructions in app. 
 
-#### Installation
+### Installation
 
 In order to run the weather_app properly you will need to install the gems below.
 Open your Terminal and run the following commands commands.
