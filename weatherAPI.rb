@@ -56,8 +56,8 @@ def directionsToCity(input)
   city = @cities.keys[input]
   # currentlyIn = currentlyIn
   @gmaps = get_map_api
-  puts "IN:#{@currentLocation}"
-  puts "TO:#{city}"
+  # puts "IN:#{@currentLocation}"
+  # puts "TO:#{city}"
   # exit
   route = @gmaps.directions(@currentLocation,city,alternatives: false)
   hash = route[0]
@@ -124,11 +124,14 @@ end
 
 #####MAIN PROGRAM########
 # currentLocation = CurrentLocation.new
+intro = Intro.new
+intro.hello
 user_input = CurrentLocation.new.askLocation()
 puts "User Input Returned:#{user_input}"
 
 formatted_address = CurrentLocation.new.getFormattedAddress(user_input)
 @currentLocation = formatted_address[1][0][:formatted_address]
+# puts '&' * 40
 
   if formatted_address[0] == false
     puts "Address not within Australia. Please try again.
@@ -147,3 +150,7 @@ formatted_address = CurrentLocation.new.getFormattedAddress(user_input)
   end
 
 askUserToTravel()
+thanks_end = Thanks.new
+puts thanks_end.thanks
+sleep (1)
+exit

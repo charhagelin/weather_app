@@ -16,7 +16,7 @@ class CurrentLocation
 
   def is_within_australia_check(hash)
     puts "Checking address is within Australia ..."
-    puts "Country Short Name: #{hash[0][:address_components][2][:short_name]}"
+    # puts "Country Short Name: #{hash[0][:address_components][3][:short_name]}"
 
     if hash[0][:address_components][2][:short_name] == "AU"
       puts "IN AUS"

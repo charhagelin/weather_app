@@ -8,3 +8,26 @@ def get_map_api
 end
 
 # @currentlyIn = nil
+
+
+class Intro
+  def initialize #input lat and long, output current temp
+    # @lat = lat
+    # @long = long
+  end
+
+  def hello
+    return "welcome..."
+  end
+end
+
+class Thanks
+  def initialize #input lat and long, output current temp
+    # @lat = lat
+    # @long = long
+  end
+
+  def thanks
+    return "the end, thanks."
+  end
+end

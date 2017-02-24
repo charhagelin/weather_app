@@ -23,6 +23,7 @@ class CurrentTemp
 
   def extractLatLong(hash) # get the lat and long from the hash
     puts "Extracting Lat and Long ..."
+    # puts hash
     lat = hash[0][:geometry][:location][:lat]
     long = hash[0][:geometry][:location][:lng]
     return [lat, long]
