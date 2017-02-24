@@ -27,12 +27,13 @@ require './current_temp'
 ####Methods#####
 
 def getCurrentTemp_raw(lat, long)
-  puts "Getting Forcast ..."
+  puts "Getting current temperature ..."
   forecast = ForecastIO.forecast(lat,long)
+  weather = forecast[:currently][:summary]
   temp = forecast[:currently][:temperature]
   celtemp = (5*(Float(temp) - 32))/9 #return temp in C
   puts "Caculating Current Temp ..."
-  return '%.2f' % celtemp
+  return ['%.2f' % celtemp, weather]
 end
 
 
@@ -56,8 +57,8 @@ def directionsToCity(input)
   city = @cities.keys[input]
   # currentlyIn = currentlyIn
   @gmaps = get_map_api
-  # puts "IN:#{@currentLocation}"
-  # puts "TO:#{city}"
+    puts "IN:#{@currentLocation}"
+   puts "TO:#{city}"
   # exit
   route = @gmaps.directions(@currentLocation,city,alternatives: false)
   hash = route[0]
@@ -84,13 +85,13 @@ def askUserToTravel()
   if user_decision == 'y'
     puts "Which city would you like directions to?"
     @cities.each_with_index do |(key,value),index|
-      puts "#{index+1} #{key}"
+      puts "#{index} #{key}" #1
     end
     puts "type the number of the city you would like directions to"
     input = gets.chomp.to_i
-    # input = input + 1
+    # input = input - 1
     length = @cities.length.to_i
-      if input.between?(1,length)
+      if input.between?(0,length) #1
         directionsToCity(input)
       else
         puts "wrong input"
@@ -107,15 +108,16 @@ end
 def listCities()
 
   rows = []
-  rows << ['Number', 'Location', 'Temp']
+  rows << ['Location', 'Temp', 'Weather']
   rows << :separator
   @cities.each_with_index do |(key,value),index|
 
     temp = getCurrentTemp_raw(value[0], value[1])
-
+    temperature = temp[0]
+    weather = temp[1]
     # puts "#{key}: #{temp}
     # "
-    rows << [index+1, key, temp] #display row by row
+    rows << [key, temperature, weather] #display row by row
   end
 
   table = Terminal::Table.new :rows => rows
